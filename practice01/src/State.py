@@ -1,3 +1,6 @@
+import copy
+
+
 class state:
     """Class to model the state of the 8 puzzle."""
 
@@ -34,15 +37,15 @@ class state:
                 string = string + "\n"
         return string
 
-    def __eq__(self, puzzle):
+    def __eq__(self, state):
         """__eq__ implementation for state."""
-        if type(puzzle) != type(self):
+        if type(state) != type(self):
             return False
-        if puzzle.__position != self.__position:
+        if state.__position != self.__position:
             return False
         for i in range(3):
             for j in range(3):
-                if puzzle.__board[i][j] != self.__board[i][j]:
+                if state.__board[i][j] != self.__board[i][j]:
                     return False
         return True
 
@@ -58,7 +61,7 @@ class state:
 
     def copy(self):
         """Returns a copy of this state."""
-        return state(self.__board.copy())
+        return state(copy.deepcopy(self.__board))
 
     def valid_moves(self):
         """Returns all the valid moves of the current state."""
@@ -95,5 +98,3 @@ class state:
         if move == "right":
             self.__position[1] = self.__position[1] + 1
         self.__swap(self.__position[0], self.__position[1], curr_pos[0], curr_pos[1])
-
-
