@@ -1,7 +1,7 @@
-class Puzzle:
-    """Class to model the 8 puzzle."""
+class state:
+    """Class to model the state of the 8 puzzle."""
 
-    def __init__(self, board):
+    def __init__(self, board: list):
         """Constructor of the puzzle with parameters."""
         if type(board) != list or len(board) > 3:
             raise Exception("Invalid board :(.")
@@ -14,8 +14,6 @@ class Puzzle:
                     raise Exception("Invalid board.")
         self.__board = board
         self.__position = None
-        self.__previous_state = None
-        self.__previous_move = None
         for i in range(3):
             for j in range(3):
                 if board[i][j] == ():
@@ -37,7 +35,7 @@ class Puzzle:
         return string
 
     def __eq__(self, puzzle):
-        """__eq__ implementation for Puzzle."""
+        """__eq__ implementation for state."""
         if type(puzzle) != type(self):
             return False
         if puzzle.__position != self.__position:
@@ -59,34 +57,11 @@ class Puzzle:
         self.__board[row2][col2] = temp_element
 
     def copy(self):
-        """Returns a copy of this Puzzle on its current state."""
-        return Puzzle(self.__board.copy())
-
-    def set_previous(self, move, previous_puzzle):
-        """Sets a previous state of this Puzzle."""
-        if move not in ["up", "down", "left", "right"]:
-            raise Exception("Wrong or invalid move: '" + str(move))
-        if type(previous_puzzle) != type(self):
-            raise Exception("Second argument is no a puzzle.")
-        prev_copy = previous_puzzle.copy()
-        print(prev_copy)
-        prev_copy.move(move)
-        print(prev_copy)
-        if prev_copy != self: 
-            raise Exception("Not a previous state of the Puzzle.")
-        self.__previous_state = previous_puzzle
-        self.__previous_move = move
-    
-    def get_previous_move(self):
-        """Returns the previous move of this Puzzle."""
-        return self.__previous_move
-
-    def get_previous_state(self):
-        """Returns the previous state of this Puzzle."""
-        return self.__previous_state
+        """Returns a copy of this state."""
+        return state(self.__board.copy())
 
     def valid_moves(self):
-        """Returns all the valid moves of the current board."""
+        """Returns all the valid moves of the current state."""
         moves = []
         row = self.__position[0]
         col = self.__position[1]
@@ -101,7 +76,7 @@ class Puzzle:
         return moves
 
     def move(self, move):
-        """Makes a move on the current board."""
+        """Makes a move on the current state."""
         valid_moves = self.valid_moves()
         if move not in valid_moves:
             raise Exception(
@@ -122,9 +97,3 @@ class Puzzle:
         self.__swap(self.__position[0], self.__position[1], curr_pos[0], curr_pos[1])
 
 
-l = [[1, (), 2], [6, 3, 4], [7, 5, 8]]
-l1 = [[(), 1, 2], [6, 3, 4], [7, 5, 8]]
-puzzle = Puzzle(l)
-puzzle1 = Puzzle(l1) 
-puzzle.set_previous("right", puzzle1)
-print(puzzle.get_previous_state() == puzzle1)
