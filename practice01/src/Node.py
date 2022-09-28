@@ -5,6 +5,7 @@ class node:
     """Class to model a wrapper node for  a state of the 8-puzzle."""
 
     def __init__(self, puzzle: State.state):
+        """Constructor of the node."""
         if type(puzzle) != State.state:
             raise Exception("Wrong argument. Not a state of the 8-puzzle.")
         self.__state = puzzle
@@ -16,6 +17,7 @@ class node:
         return self.__state.__str__() + "\nprevious move: " + str(self.__previous_move)
 
     def get_state(self):
+        """Function to get the state of the node"""
         return self.__state
 
     def set_previous(self, move, previous_node):

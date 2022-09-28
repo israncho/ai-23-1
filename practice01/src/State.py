@@ -8,24 +8,29 @@ class state:
         """Constructor of the puzzle with parameters."""
         if type(board) != list or len(board) > 3:
             raise Exception("Invalid board :(.")
+
         for i in range(3):
             if type(board[i]) != list or len(board[i]) > 3:
                 raise Exception("Invalid board.")
+
         for i in range(3):
             for j in range(3):
                 if type(board[i][j]) != tuple and type(board[i][j]) != int:
                     raise Exception("Invalid board.")
+
         self.__board = board
         self.__position = None
+
         for i in range(3):
             for j in range(3):
                 if board[i][j] == ():
                     self.__position = [i, j]
+
         if self.__position == None:
             raise Exception("Invalid board.")
 
     def __str__(self):
-        """Function to return the string representation of the puzzle."""
+        """Function to return the string representation of the state of the puzzle."""
         string = ""
         for i in range(3):
             for j in range(3):
@@ -33,20 +38,25 @@ class state:
                     string = string + "   "
                 else:
                     string = string + str(self.__board[i][j]) + "  "
+
             if i < 2:
                 string = string + "\n"
+
         return string
 
     def __eq__(self, state):
         """__eq__ implementation for state."""
         if type(state) != type(self):
             return False
+
         if state.__position != self.__position:
             return False
+
         for i in range(3):
             for j in range(3):
                 if state.__board[i][j] != self.__board[i][j]:
                     return False
+
         return True
 
     def __swap(self, row1: int, col1: int, row2: int, col2: int):
@@ -55,6 +65,7 @@ class state:
         for element in to_verify:
             if element > 2 or element < 0:
                 raise Exception("Positions out of bounds.")
+
         temp_element = self.__board[row1][col1]
         self.__board[row1][col1] = self.__board[row2][col2]
         self.__board[row2][col2] = temp_element
@@ -65,6 +76,10 @@ class state:
 
     def valid_moves(self):
         """Returns all the valid moves of the current state."""
+        # The board:
+        # [0,0] [0,1] [0,2]
+        # [1,0] [1,1] [1,2]
+        # [2,0] [2,1] [2,2]
         moves = []
         row = self.__position[0]
         col = self.__position[1]
