@@ -70,6 +70,14 @@ class state:
         self.__board[row1][col1] = self.__board[row2][col2]
         self.__board[row2][col2] = temp_element
 
+    def get_board(self):
+        """Returns a copy of the board."""
+        return copy.deepcopy(self.__board)
+
+    def get_position(self):
+        """Returns the position in a tuple."""
+        return (self.__position[0], self.__position[1])
+
     def copy(self):
         """Returns a copy of this state."""
         return state(copy.deepcopy(self.__board))
