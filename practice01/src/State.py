@@ -121,3 +121,11 @@ class state:
         if move == "right":
             self.__position[1] = self.__position[1] + 1
         self.__swap(self.__position[0], self.__position[1], curr_pos[0], curr_pos[1])
+
+edoI = [[1, (), 2], [6, 3, 4], [7, 5, 8]]
+puzzle = state(edoI)
+print(puzzle)
+print(puzzle.get_position())
+print(puzzle.valid_moves())
+puzzle.move("right")
+print(puzzle)
