@@ -19,7 +19,7 @@ class state:
                     raise Exception("Invalid board.")
 
         self.__board = board
-        self.__position = None
+        self.__position = None  
 
         for i in range(3):
             for j in range(3):
@@ -43,7 +43,17 @@ class state:
                 string = string + "\n"
 
         return string
-
+    
+    def equ(self, state):
+        boo = True
+        for i in range(3):
+            for j in range(3):
+                #print("state: ", state.__board[i][j], "self: ", self.__board[i][j])
+                if state.__board[i][j] != self.__board[i][j]:
+                    boo = False
+        return boo
+    
+    
     def __eq__(self, state):
         """__eq__ implementation for state."""
         if type(state) != type(self):

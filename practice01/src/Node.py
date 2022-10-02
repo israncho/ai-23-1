@@ -15,11 +15,14 @@ class node:
         self.__previous_move = None
         self.depth = 0
     
+    def get_depth(self):
+        return self.depth
+    
     def set_depth(self, x):
         self.depth = x
 
     def __str__(self):
-        return self.__state.__str__() + "\nprevious move : "  + str(self.__previous_move)+ "and with depth "+ str(self.depth)
+        return self.__state.__str__() + "\nprevious move : <"  + str(self.__previous_move)+ "> and with depth: "+ str(self.depth)
 
     def get_state(self):
         """Function to get the state of the node"""
@@ -57,7 +60,7 @@ def expand(nodo:node):
         oldState.move(x)
         newNodo = node(oldState)
         newNodo.set_previous(x,nodo)
-        newNodo.set_depth(nodex.depth + 1)
+        newNodo.set_depth(nodo.get_depth() + 1)
         yield newNodo
 
 def depth_limited_search(nodoI:node, limit):
@@ -65,26 +68,31 @@ def depth_limited_search(nodoI:node, limit):
     #boardI= State.state(l)
     #initialN = node(boardI)
     initialN = nodoI
+    finalS =State.state([[(), 1, 2], [3, 4, 5], [6, 7, 8]])
     front=[initialN]
     result = "path dont found"
+    #print(type(finalS))
+    print(finalS)
     while len(front) != 0:
         newNodo = front.pop()
-        if (newNodo.get_state() == State.state([[(), 1, 2], [3, 4, 5], [6, 7, 8]])):
+        print(newNodo.get_state())
+        print(newNodo.get_state().equ(finalS))
+        if ((newNodo.get_state().equ(finalS))!=False):
             return newNodo
         if (newNodo.depth >= limit):
             result = "limit exceeded"
         else:
             for x in expand(newNodo):
-                print(x)
-                print(x.get_state().get_board()==[[(), 1, 2], [3, 4, 5], [6, 7, 8]])
-                #front.append(x)
+                #print(x)
+                #print(x.get_state().equ(finalS))
+                front.append(x)
     return result
 
 def writeR(nodo):
-    if get_previous_node(nodo) == None:
-        print(nodo.get_state)
+    if nodo.get_previous_node() == None:
+        print(nodo.get_state())
         return
-    father = nodo.get_previous_node
+    father = nodo.get_previous_node()
     writeR(father)
     print(father)
     return string
@@ -102,27 +110,12 @@ node3 = node(puzzle2)
 node3.set_previous("down", node1) # node3=l2, node
 node1.set_previous("right", node2) # node1=l, node2=l1
 
-lx = [[(), 1, 2], [6, 3, 4], [7, 5, 8]]
-boardX = State.state(lx)
-nodex = node(boardX)
-print("Nodo base:\n",nodex,"\n")
-for i in expand(nodex):
-    print(i)
-
-lf = [[(), 1, 2], [3, 4, 5], [6, 7, 9]]
-boardF = State.state(lf)
-nodeF = node(boardF)
-if (nodeF.get_state() == State.state([[(), 1, 2], [3, 4, 5], [6, 7, 8]])):
-    print("1")
-else: 
-    print("F")
-
-li = [[1, (), 2], [3, 4, 5], [6, 7, 9]]
+li = [[1, (), 2], [3, 4, 5], [6, 7, 8]]
 boardF = State.state(li)
 nodeF = node(boardF)
 print("\n--> Begin in node: ", nodeF)
 result=depth_limited_search(nodeF, 10)
-if (result == "path dont found" or resultado == "limit exceeded"):
+if (result == "path dont found" or result == "limit exceeded"):
         print(result)
 else:
     writeR(result)
