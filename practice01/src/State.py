@@ -8,7 +8,7 @@ class state:
         """Constructor of the puzzle with parameters."""
         elements = {1, 2, 3, 4, 5, 6, 7, 8, ()}
         if type(board) != list or len(board) > 3:
-            raise Exception("Invalid board :(.")
+            raise Exception("Invalid board :(")
 
         for i in range(3):
             if type(board[i]) != list or len(board[i]) > 3:
