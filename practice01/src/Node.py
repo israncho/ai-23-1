@@ -75,12 +75,14 @@ def depth_limited_search(nodoI:node, limit):
     print(finalS)
     while len(front) != 0:
         newNodo = front.pop()
-        print(newNodo.get_state())
+        #print(newNodo.get_state())
         print(newNodo.get_state().equ(finalS))
         if ((newNodo.get_state().equ(finalS))!=False):
+            print("se hizo")
             return newNodo
-        if (newNodo.depth >= limit):
+        elif (newNodo.depth >= limit):
             result = "limit exceeded"
+            #return result
         else:
             for x in expand(newNodo):
                 #print(x)
@@ -110,8 +112,8 @@ node3 = node(puzzle2)
 node3.set_previous("down", node1) # node3=l2, node
 node1.set_previous("right", node2) # node1=l, node2=l1
 
-li = [[1, (), 2], [3, 4, 5], [6, 7, 8]]
-boardF = State.state(li)
+lin = [[1, (), 2], [3, 4, 5], [6, 7, 8]]
+boardF = State.state(lin)
 nodeF = node(boardF)
 print("\n--> Begin in node: ", nodeF)
 result=depth_limited_search(nodeF, 10)
@@ -119,6 +121,5 @@ if (result == "path dont found" or result == "limit exceeded"):
         print(result)
 else:
     writeR(result)
-print("FIN <<")
 
     
