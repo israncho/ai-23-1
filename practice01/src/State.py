@@ -6,8 +6,9 @@ class state:
 
     def __init__(self, board: list):
         """Constructor of the puzzle with parameters."""
+        elements = {1, 2, 3, 4, 5, 6, 7, 8, ()}
         if type(board) != list or len(board) > 3:
-            raise Exception("Invalid board :(.")
+            raise Exception("Invalid board :(")
 
         for i in range(3):
             if type(board[i]) != list or len(board[i]) > 3:
@@ -17,6 +18,10 @@ class state:
             for j in range(3):
                 if type(board[i][j]) != tuple and type(board[i][j]) != int:
                     raise Exception("Invalid board.")
+                if board[i][j] not in elements:
+                    raise Exception("Invalid board.")
+                else:
+                    elements.remove(board[i][j])
 
         self.__board = board
         self.__position = None

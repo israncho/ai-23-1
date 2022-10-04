@@ -42,18 +42,3 @@ class node:
     def get_previous_node(self):
         """Returns the previous state of this state."""
         return self.__previous_node
-
-
-l = [[1, (), 2], [6, 3, 4], [7, 5, 8]]
-l1 = [[(), 1, 2], [6, 3, 4], [7, 5, 8]]
-puzzle = State.state(l)
-puzzle1 = State.state(l1)
-node1 = node(puzzle)
-node2 = node(puzzle1)
-node1.set_previous("right", node2)
-print("\n-------------\n")
-print(node2)
-print(node1)
-print("\n-------------\n")
-print(node2)
-print(node1.get_previous_node())
