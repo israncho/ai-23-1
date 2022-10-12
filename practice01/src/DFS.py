@@ -41,12 +41,12 @@ def dfs(state: State.state):
 
     print("\nNodes visited: ", end="")
     print(nodes_visited)
-    print("\nPrinting backtrack solution...\n")
-    sleep(2)
+    #print("\nPrinting backtrack solution...\n")
+    #sleep(2)
     solution_moves = -1
     while current_node != None:
         solution_moves += 1
-        print(current_node)
+        #print(current_node)
         current_node = current_node.get_previous_node()
     print("Moves to solve: ", end="")
     print(solution_moves)
