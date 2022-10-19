@@ -1,17 +1,10 @@
 import State
 import Node
-import numpy as np
 
 def toNP(state:  State.state):
-	copy = state.copy()
-	boardC = copy.get_board()
-	i = 0
-	for row in state.get_board():
-		state.get_board
-		boardC[i]=np.asarray(row, dtype=object)
-		i=1+i
-		#print(type(row), row)
-	return np.concatenate((boardC[0],boardC[1],boardC[2]))
+    copy = state.copy()
+    board = copy.get_board()
+    return board[0] + board[1] + board[2]
 
 def getInvCount(arr):
     inv_count = 0
@@ -32,10 +25,10 @@ def isSolvable(arr) :
     return (inv_count % 2 == 0)
 
 #goal_state = State.state([[1, 2, 3], [4, 5, 6], [7, 8, ()]])
-notSolvable = State.state([[8, 1, 2], [(), 4, 3], [7, 6, 5]])
-aux1= toNP(notSolvable)
+#notSolvable = State.state([[8, 1, 2], [(), 4, 3], [7, 6, 5]])
+#aux1= toNP(notSolvable)
 #aux1 = np.concatenate((boardDT[0],boardDT[1],boardDT[2]))
-print("Number of inversions: ",getInvCount(aux1))
-print("Is solvable? ", isSolvable(aux1))
-print(aux1)
-print(type(aux1))
+#print("Number of inversions: ",getInvCount(aux1))
+#print("Is solvable? ", isSolvable(aux1))
+#print(aux1)
+#print(type(aux1))
