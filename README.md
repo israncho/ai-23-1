@@ -10,7 +10,7 @@ Practices and more from AI class.
 
 ## Practices
 
-- (Practice01)[https://github.com/israncho/ai-23-1/tree/main/practice01] DFS 
+- [Practice01](https://github.com/israncho/ai-23-1/tree/main/practice01) DFS 
 
 ### Requirements 
 
