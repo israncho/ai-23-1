@@ -69,12 +69,13 @@ except Exception as e:
 
 try:
     state = State.state(board)
-    print(state)
+    print()
     stateNP = Inversion.toNP(state)
     if Inversion.isSolvable(stateNP):
-        print("Is solvable because the number of inversions is", Inversion.getInvCount(stateNP), "and this number is     even :D")
+        print("------SOLVABLE------")
         dfs(state)
     else:
-        print("It has no solution because the number of inversions is ", Inversion.getInvCount(stateNP), "and this number is odd, try another state :)")
+        print("-------NOT SOLVABLE-------")
+        print("Odd number of inversions, try another state.")
 except Exception as e:
     print(e)
