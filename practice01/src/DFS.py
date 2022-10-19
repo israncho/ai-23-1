@@ -3,6 +3,7 @@ import State
 import Node
 import sys
 import json
+import Inversion
 from collections import defaultdict
 
 
@@ -68,6 +69,13 @@ except Exception as e:
 
 try:
     state = State.state(board)
-    dfs(state)
+    print()
+    stateNP = Inversion.toNP(state)
+    if Inversion.isSolvable(stateNP):
+        print("------SOLVABLE------")
+        dfs(state)
+    else:
+        print("-------NOT SOLVABLE-------")
+        print("Odd number of inversions, try another state.")
 except Exception as e:
     print(e)

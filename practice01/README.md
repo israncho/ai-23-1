@@ -18,6 +18,17 @@ you can check with a faster example
 python3 src/DFS.py '[[1,2,3],[4,5,6],["e",7,8]]'
 ```
 
+There are boards that have no solution
+An example of this is the next representation of the board
+
+```shell
+python3 src/DFS.py '[[8,1,2],["e",4,3], [7,6,5]]'
+```
+
+```shell
+python3 src/DFS.py '[[7,2,3],[4,"e",6],[1,5,8]]'
+```
+
 
 ### Tests
 
@@ -27,3 +38,5 @@ while in the `practice01` folder.
 ```shell
 python3 src/StateUnitTest.py
 ``` 
+
+⌨️ with much :purple_heart: by [israncho](https://github.com/israncho) 😊⌨️,  [jose-mpm](https://github.com/Jose-MPM) 😊⌨️,  [ruben](https://github.com/Jose-MPM) 😊⌨️,  [Erick](https://github.com/Jose-MPM) 😊⌨️	
