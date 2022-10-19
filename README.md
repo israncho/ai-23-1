@@ -8,6 +8,10 @@ Practices and more from AI class.
 - José Manuel Pedro Méndez
 - Ruben Acosta Arzate
 
+## Practices
+
+- (Practice01)[https://github.com/israncho/ai-23-1/tree/main/practice01] DFS 
+
 ### Requirements 
 
 You must have `python 3` installed on your system, and a terminal
